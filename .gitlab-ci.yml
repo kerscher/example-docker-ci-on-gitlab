@@ -20,6 +20,9 @@ yamllint:
     SHA: sha256:22b33626d57e990399d38ecc648884fb44ab9638eb1d3e1a2ab835864427ec20
   script:
     - docker pull "${IMAGE}@${SHA}"
+    - find -name '*.yml' -o -name '*.yaml'
+    - ls -R "${PWD}"
+    - ls -R "${CI_PROJECT_DIR}"
     - docker run -v "${CI_PROJECT_DIR}:/app"
                     "${IMAGE}@${SHA}"
                     $(find -name '*.yml' -o -name '*.yaml')
